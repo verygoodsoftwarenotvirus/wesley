@@ -197,6 +197,7 @@ func (i *Inquiry) Answer(ctx context.Context, question string) (string, error) {
 				return "", err
 			}
 
+			i.replExports["ctx"] = reflect.ValueOf(ctx).Elem()
 			if err = repl.Use(interp.Exports{"provided/provided": i.replExports}); err != nil {
 				return "", err
 			}
